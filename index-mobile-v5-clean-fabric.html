@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Nidhi Vij | Data &amp; AI Engineer</title>
+<link rel="canonical" href="https://nidhivij.com"/>
+<meta name="description" content="Nidhi Vij is a London-based Data Engineer specialising in Microsoft Fabric, PySpark, SQL, lakehouse architecture, streaming data and modern data platforms."/>
+<meta property="og:title" content="Nidhi Vij | Data &amp; AI Engineer"/>
+<meta property="og:description" content="London-based Data Engineer specialising in Microsoft Fabric, PySpark, SQL, lakehouse architecture and modern data platforms."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://nidhivij.com"/>
+<meta name="theme-color" content="#111217"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#111217;
+  --ink-2:#171923;
+  --cream:#F5F3EC;
+  --cream-dim:#C9CDDB;
+  --warm-dim:#8B91A4;
+  --mono-dim:#5C6175;
+  --blue:#3F5FD2;
+  --blue-mist:#7C90DD;
+  --red:#E4513D;
+  --line:rgba(255,255,255,.07);
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sans:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:flex-start;
+  padding:24px 40px;mix-blend-mode:difference;color:#F5F3EC;pointer-events:none}
+.nav .logo{pointer-events:auto}
+.nav .logo .name{font-size:13px;font-weight:700;letter-spacing:.22em}
+.nav .logo .desc{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,236,.55);margin-top:5px}
+.nav ul{display:flex;gap:30px;list-style:none;pointer-events:auto}
+.nav a{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,243,236,.7);text-decoration:none;transition:color .25s}
+.nav a:hover{color:#F5F3EC}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;height:100vh;min-height:640px;background:var(--ink);overflow:hidden}
+.hero-grid{position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+                   linear-gradient(0deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:8.333% 12.5%;}
+.hero-vignette{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 38% 42%,transparent 55%,rgba(6,7,10,.55) 100%)}
+
+/* fragments */
+.fragments{position:absolute;inset:0;z-index:2;pointer-events:none}
+.frag{position:absolute;font-family:var(--mono);font-size:11px;line-height:1.65;font-weight:300;
+  color:#9AA0B4;background:rgba(14,15,21,.55);border:1px solid var(--line);border-radius:3px;
+  padding:9px 13px;white-space:pre;will-change:transform,opacity;transform-origin:center}
+.frag[data-depth="1"]{opacity:.68}
+.frag[data-depth="2"]{opacity:.38}
+.frag[data-depth="3"]{opacity:.20;filter:blur(.4px)}
+.frag .c{display:block;font-size:9px;font-weight:500;letter-spacing:.22em;color:var(--blue-mist);margin-bottom:5px}
+.frag .k{color:var(--mono-dim)}
+.frag em{font-style:normal;color:var(--blue-mist)}
+.frag em.bad{color:var(--red)}
+.frag-inner{display:block;animation:breathe 7s ease-in-out infinite}
+.frag:nth-child(2n) .frag-inner{animation-duration:9s;animation-delay:-2s}
+.frag:nth-child(3n) .frag-inner{animation-duration:11s;animation-delay:-4s}
+@keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+/* lane labels */
+.lane-label{position:absolute;z-index:2;font-family:var(--mono);font-size:9.5px;font-weight:500;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--mono-dim);opacity:0;pointer-events:none;
+  transform:translateX(-50%);padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.09)}
+
+/* annotations */
+.annotations{position:absolute;left:50%;top:23%;transform:translateX(-50%);z-index:4;pointer-events:none}
+.ann{position:absolute;left:0;top:0;transform:translateX(-50%);white-space:nowrap;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--blue-mist);opacity:0}
+.ann::before{content:"[";color:var(--mono-dim);margin-right:10px}
+.ann::after{content:"]";color:var(--mono-dim);margin-left:10px}
+
+/* branches */
+.branches-svg{position:absolute;inset:0;z-index:2;pointer-events:none}
+.branches-svg path{stroke:var(--blue);stroke-width:1.4;opacity:.52}
+.branch-label{position:absolute;z-index:3;opacity:0;pointer-events:none;transform:translate(-50%,-50%);text-align:left}
+.branch-label .bl-main{display:block;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#F5F3EC}
+.branch-label .bl-sub{display:block;font-family:var(--mono);font-size:9.5px;font-weight:400;letter-spacing:.05em;color:#7F8495;opacity:.8;margin-top:4px}
+.trusted-node{position:absolute;z-index:3;transform:translate(-50%,-50%);opacity:0;pointer-events:none;
+  display:flex;align-items:center;gap:11px;font-family:var(--mono)}
+.trusted-node .tn-glow{position:absolute;left:4px;top:50%;transform:translate(-50%,-50%);width:340px;height:340px;
+  border-radius:50%;pointer-events:none;opacity:0;
+  background:radial-gradient(circle,rgba(63,95,210,.10) 0%,rgba(63,95,210,.035) 35%,transparent 65%)}
+.trusted-node .tn-dot{width:9px;height:9px;border-radius:50%;background:var(--blue);flex:none;transform-origin:center;
+  box-shadow:0 0 14px rgba(63,95,210,.85)}
+.trusted-node .tn-label{font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--cream)}
+.trusted-node .tn-tag{position:absolute;left:20px;top:100%;margin-top:11px;white-space:nowrap;opacity:0;
+  font-size:9.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--warm-dim)}
+.mobile-outcomes{display:none}
+
+/* content */
+.hero-content{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;
+  padding:0 48px;pointer-events:none}
+.hero h1{font-size:clamp(54px,8.4vw,148px);font-weight:800;letter-spacing:-.035em;line-height:.97;
+  color:var(--cream);will-change:transform;transform-origin:left center}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.supporting{margin-top:34px;max-width:520px;font-size:15px;line-height:1.6;font-weight:400;color:var(--cream-dim)}
+.hero-cta{position:absolute;left:48px;bottom:40px;z-index:3;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.14em;color:var(--warm-dim)}
+.hero-cta .arrow{display:inline-block;animation:hint 2.4s ease-in-out infinite;margin-left:8px}
+@keyframes hint{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(4px);opacity:1}}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:767.98px){
+  .nav{padding:18px 20px}
+  .nav ul{display:none}
+  .hero{height:100svh;min-height:620px}
+  .hero-content{padding:104px 22px 92px;justify-content:flex-start}
+  .hero h1{font-size:clamp(40px,11.8vw,58px);line-height:.96}
+  .supporting{font-size:13.5px;margin-top:24px;max-width:92%}
+  .hero-grid{will-change:transform,background-position}
+  .frag{font-size:8.8px;padding:6px 8px;max-width:46vw;overflow:hidden}
+  .frag:nth-child(n+7){display:none}
+  .frag[data-depth]{opacity:.42}
+  .frag[data-depth="2"]{opacity:.32}
+  .frag[data-depth="3"]{opacity:.18}
+  .lane-label,.annotations,.branches-svg,.branch-label,.trusted-node{display:none}
+  .hero-cta{left:22px;bottom:22px;font-size:9px;max-width:78%}
+
+  .mobile-outcomes{
+    display:block;position:absolute;left:22px;right:22px;top:52%;
+    margin:0;font-family:var(--mono);opacity:0;pointer-events:none
+  }
+  .mo-node{display:flex;align-items:center;gap:9px;font-size:10.5px;font-weight:500;letter-spacing:.16em;color:var(--cream);margin-bottom:12px}
+  .mo-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 10px rgba(63,95,210,.8)}
+  .mo{padding:8px 0 8px 16px;border-left:1px solid rgba(63,95,210,.5)}
+  .mo b{display:block;font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--cream)}
+  .mo span{display:block;font-size:8.7px;letter-spacing:.05em;color:#7F8495;margin-top:2px}
+}
+@media (prefers-reduced-motion:reduce){
+  .frag-inner,.hero-cta .arrow{animation:none}
+  .lane-label,.annotations,.branches-svg,.branch-label,.trusted-node{display:none}
+}
+
+/* ---------- 02 / EXPERTISE ---------- */
+.exp{position:relative;background:#F2EFE7;color:#17181D;padding:170px 48px 130px;overflow:hidden}
+.exp::before{content:"";position:absolute;top:0;left:0;right:0;height:200px;pointer-events:none;
+  background:linear-gradient(to bottom,#111217 0%,rgba(17,18,23,0) 100%)}
+.exp-inner{position:relative;z-index:2;max-width:1440px;margin:0 auto}
+.exp .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8578}
+.exp .eyebrow b{color:#8A8578;font-weight:400}
+.exp h2{font-size:clamp(44px,6.2vw,104px);font-weight:800;letter-spacing:-.03em;line-height:1.0;color:#17181D;margin:32px 0 0}
+.exp h2 em{font-style:normal;color:var(--blue)}
+.exp-intro{max-width:620px;margin-top:36px;font-size:16.5px;line-height:1.65;color:#4A4C55}
+.exp-list{margin-top:110px;border-top:1px solid #D8D0BF}
+.exp-row{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:baseline;
+  padding:42px 0;position:relative;cursor:default}
+.exp-row .rule{position:absolute;left:0;right:0;bottom:0;height:1px;background:#D8D0BF;transform-origin:left center}
+.exp-row h3{font-size:clamp(24px,3vw,42px);font-weight:700;letter-spacing:-.02em;color:#17181D;
+  transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.exp-row .tech{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:#6E6A5E;opacity:.75;text-align:right;transition:opacity .3s;white-space:nowrap}
+.exp-row:hover h3{transform:translateX(8px)}
+.exp-row:hover .tech{opacity:1}
+.exp-principles{margin-top:130px}
+.exp-principles .p-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8A8578;margin-bottom:34px}
+.exp-principles .p-lines{font-size:clamp(26px,3.4vw,52px);font-weight:800;letter-spacing:-.02em;line-height:1.28;color:#17181D}
+.exp-principles .p-lines em{font-style:normal;color:var(--blue)}
+.exp-principles .p-copy{max-width:560px;margin-top:34px;font-size:14.5px;line-height:1.65;color:#6E6A5E}
+@media (max-width:900px){
+  .exp{padding:120px 28px 90px}
+  .exp-row{grid-template-columns:1fr;grid-template-rows:auto auto;row-gap:8px;padding:32px 0}
+  .exp-row h3{font-size:clamp(22px,7vw,30px)}
+  .exp-row .tech{grid-column:1;text-align:left;white-space:normal}
+  .exp-intro{font-size:15px}
+}
+
+/* ---------- 03 / MICROSOFT FABRIC ---------- */
+.fb{position:relative;background:#F2EFE7;color:#17181D;padding:190px 48px 120px;overflow:hidden}
+.fb-inner{max-width:1440px;margin:0 auto}
+.fb .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8578}
+.fb .eyebrow b{color:#8A8578;font-weight:400}
+.fb h2{font-size:clamp(44px,6vw,100px);font-weight:800;letter-spacing:-.03em;line-height:1.0;color:#17181D;margin:32px 0 0}
+.fb h2 em{font-style:normal;color:var(--blue)}
+.fb-intro{max-width:600px;margin-top:32px;font-size:16px;line-height:1.65;color:#4A4C55}
+.fb-stage{margin-top:90px;position:relative}
+#data{pointer-events:none}
+.fb-scene{position:relative;height:100vh;min-height:660px;border-top:1px solid #D8D0BF;border-bottom:1px solid #D8D0BF}
+.fb-svg{position:absolute;inset:0;pointer-events:none}
+.fb-svg path{stroke:var(--blue);fill:none}
+.fb-src{position:absolute;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:#33353D;
+  padding:8px 14px;border:1px solid #CFC7B4;background:rgba(242,239,231,.92);white-space:nowrap}
+.fb-ingest{position:absolute;left:30%;top:46%;transform:translateY(-50%);display:flex;align-items:center;gap:10px;font-family:var(--mono);white-space:nowrap}
+.fb-ingest .i-dot{width:9px;height:9px;border-radius:50%;background:var(--blue);flex:none;box-shadow:0 0 0 5px rgba(63,95,210,.10)}
+.fb-ingest .i-name{font-size:12px;font-weight:500;letter-spacing:.18em;color:#17181D}
+.fb-ingest .i-tech{position:absolute;left:19px;top:100%;margin-top:9px;font-size:9.5px;letter-spacing:.06em;color:#6E6A5E;white-space:nowrap}
+.fb-spine{position:absolute;left:52%;top:22%;width:1px;height:52%;background:#D8D0BF}
+.fb-spine-prog{position:absolute;left:52%;top:22%;width:1px;height:52%;background:var(--blue);transform:scaleY(0);transform-origin:top center}
+.fb-tier{position:absolute;left:52%;transform:translateY(-50%);white-space:nowrap;font-family:var(--mono)}
+.fb-tier .t-dot{position:absolute;left:0;top:7px;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:#CFC7B4}
+.fb-tier .t-name{display:block;margin-left:20px;font-size:12.5px;font-weight:500;letter-spacing:.18em;color:#9A9388}
+.fb-tier .t-cue{display:block;margin-left:20px;margin-top:5px;font-size:9.5px;letter-spacing:.1em;color:#8A8578;opacity:0}
+.fb-ann{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:#6E6A5E;opacity:0;white-space:nowrap;text-align:right}
+.fb-ann b{display:block;font-size:9px;font-weight:500;letter-spacing:.22em;color:#8A8578;margin-bottom:5px}
+.fb-packet{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--blue);opacity:0;
+  box-shadow:0 0 12px rgba(63,95,210,.6);transform:translate(-50%,-50%)}
+.fb-out{position:absolute;left:80%;transform:translateY(-50%);opacity:0;white-space:nowrap}
+.fb-out .o-main{display:block;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.16em;color:#17181D}
+.fb-out .o-sub{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;color:#6E6A5E;opacity:.85;margin-top:4px}
+.fb-payoff{position:absolute;left:52%;top:82%;transform:translateY(-50%);font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:#6E6A5E;opacity:0;white-space:nowrap}
+.fb-foundation{position:absolute;left:30%;right:8%;bottom:5.5%;opacity:0;display:flex;gap:72px;font-family:var(--mono);white-space:nowrap}
+.fb-foundation .f-rule{position:absolute;left:0;right:0;top:-16px;height:1px;background:#D8D0BF;transform:scaleX(0);transform-origin:left center}
+.fb-foundation .f-group b{display:block;font-size:9px;font-weight:500;letter-spacing:.22em;color:#6E6A5E;margin-bottom:6px}
+.fb-foundation .f-group span{font-size:9.5px;letter-spacing:.06em;color:#8A8578}
+.fb-mobile{display:none}
+@media (max-width:900px){ .fb{padding:130px 28px 90px} }
+@media (max-width:767.98px){
+  .fb{padding:120px 22px 92px}
+  .fb-stage{margin-top:64px}
+  .fb-scene{display:none}
+  .fb-mobile{
+    display:block;position:relative;height:96svh;min-height:740px;
+    margin-top:44px;border-top:1px solid #D8D0BF;border-bottom:1px solid #D8D0BF;
+    overflow:hidden;padding:38px 8px 34px 34px
+  }
+  .fm-rail{
+    position:absolute;left:14px;top:54px;bottom:54px;width:1px;
+    background:#CFC7B4;opacity:.9;transform-origin:top center
+  }
+  .fm-packet{
+    position:absolute;left:10px;top:50px;width:9px;height:9px;border-radius:50%;
+    background:var(--blue);box-shadow:0 0 14px rgba(63,95,210,.7);
+    opacity:0;z-index:3
+  }
+  .fm-row{
+    position:absolute;left:34px;right:8px;padding:0 0 0 12px;border:0;
+    opacity:.22;transform:translateY(16px)
+  }
+  .fb-mobile > .fm-sources{top:7%}
+  .fb-mobile > .fm-ingest-row{top:22%}
+  .fb-mobile > .fm-lakehouse{top:37%}
+  .fb-mobile > .fm-medallion{top:52%}
+  .fb-mobile > .fm-serve{top:68%}
+  .fm-row b{display:block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.16em;color:#17181D}
+  .fm-row span{display:block;font-family:var(--mono);font-size:9px;line-height:1.38;letter-spacing:.035em;color:#6E6A5E;margin-top:6px}
+  .fm-row::before{
+    content:"";position:absolute;left:-25px;top:3px;width:8px;height:8px;border-radius:50%;
+    background:#CFC7B4;transition:background-color .2s ease,box-shadow .2s ease,transform .2s ease
+  }
+  .fm-row.fm-active{opacity:1}
+  .fm-row.fm-active::before{background:var(--blue);box-shadow:0 0 12px rgba(63,95,210,.5);transform:scale(1.05);opacity:.35}
+  .fm-arrow{display:none}
+  .fm-platform{
+    position:absolute;left:34px;right:8px;top:84%;bottom:auto;margin:0;padding-top:14px;
+    border-top:1px solid #D8D0BF;opacity:0
+  }
+  .fm-platform .fm-eyebrow{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;color:#8A8578;margin-bottom:8px}
+  .fm-platform .fm-row{position:static;opacity:.55;transform:none;padding:2px 0 0 12px;min-height:0}
+  .fm-platform .fm-row + .fm-row{margin-top:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  .fb-scene{display:none}
+  .fb-mobile{display:block;margin-top:64px;border-top:1px solid #D8D0BF}
+}
+
+/* ---------- BUILDS ---------- */
+.bd{position:relative;background:#F2EFE7;color:#17181D;padding:170px 48px 140px;overflow:hidden}
+.bd-inner{max-width:1440px;margin:0 auto}
+.bd .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8578}
+.bd h2{font-size:clamp(44px,6vw,96px);font-weight:800;letter-spacing:-.03em;line-height:1.0;color:#17181D;margin:32px 0 0}
+.bd h2 em{font-style:normal;color:var(--blue)}
+.bd-intro{max-width:600px;margin-top:32px;font-size:16px;line-height:1.65;color:#4A4C55}
+.bd-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 72px;margin-top:96px}
+.bd-row{border-top:1px solid #D8D0BF;padding:40px 0 46px}
+.bd-row:nth-child(2n){border-left:1px solid #D8D0BF;padding-left:48px}
+.bd-row h3{font-size:clamp(20px,2.2vw,30px);font-weight:700;letter-spacing:-.015em;color:#17181D}
+.bd-row p{margin-top:16px;font-size:14.5px;line-height:1.65;color:#4A4C55;max-width:440px}
+.bd-row .kw{display:block;margin-top:18px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:#8A8578}
+.bd-foot{margin-top:56px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#8A8578}
+.bd-foot b{color:var(--blue);font-weight:500}
+@media (max-width:900px){ .bd{padding:120px 28px 100px} .bd-grid{grid-template-columns:1fr;gap:0} .bd-row:nth-child(2n){border-left:none;padding-left:0} }
+
+/* ---------- ABOUT ---------- */
+.ab{position:relative;background:#111217;color:#F5F3EC;padding:170px 48px 150px;overflow:hidden}
+.ab-inner{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:0.85fr 1.15fr;gap:88px;align-items:start}
+.ab-photo{position:relative}
+.ab-photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;
+  clip-path:inset(0 0 0 0)}
+.ab .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#6E7280}
+.ab h2{font-size:clamp(48px,6.4vw,108px);font-weight:800;letter-spacing:-.03em;line-height:.98;margin:32px 0 0}
+.ab h2 em{font-style:normal;color:var(--blue)}
+.ab-sub{margin-top:22px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:#7C90DD}
+.ab-copy{margin-top:38px;font-size:15.5px;line-height:1.75;color:#C9CDDB;max-width:560px}
+.ab-copy p+p{margin-top:20px}
+.ab-strip{margin-top:56px;border-top:1px solid #2E3038;padding-top:26px;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.14em;color:#8B91A4;line-height:2.2}
+.ab-strip b{color:#F5F3EC;font-weight:500}
+.ab-meta{display:grid;grid-template-columns:1fr 1fr;gap:26px 40px;margin-top:56px;border-top:1px solid #2E3038;padding-top:30px}
+.ab-meta .m b{display:block;font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.22em;color:#6E7280;margin-bottom:8px;text-transform:uppercase}
+.ab-meta .m span{font-size:13.5px;color:#C9CDDB}
+@media (max-width:900px){
+  .ab{padding:110px 28px 100px}
+  .ab-inner{grid-template-columns:1fr;gap:56px}
+  .ab-photo img{aspect-ratio:4/5;max-width:420px}
+}
+
+/* ---------- CONTACT + FOOTER ---------- */
+.ct{position:relative;background:#F2EFE7;color:#17181D;padding:190px 48px 120px;overflow:hidden}
+.ct-inner{max-width:1440px;margin:0 auto}
+.ct .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8578}
+.ct h2{font-size:clamp(48px,7vw,120px);font-weight:800;letter-spacing:-.03em;line-height:1.0;margin:32px 0 0}
+.ct h2 em{font-style:normal;color:var(--blue)}
+.ct-intro{max-width:560px;margin-top:36px;font-size:16px;line-height:1.65;color:#4A4C55}
+.ct-links{display:flex;gap:120px;margin-top:96px}
+.ct-item b{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.2em;color:#8A8578;margin-bottom:14px}
+.ct-item a{font-family:var(--sans);font-size:22px;font-weight:500;letter-spacing:-.01em;color:#17181D;text-decoration:none;
+  background-image:linear-gradient(currentColor,currentColor);background-size:0% 1px;background-repeat:no-repeat;
+  background-position:left calc(100% - 1px);transition:color .3s ease,background-size .4s cubic-bezier(.22,1,.36,1)}
+.ct-item a:hover{color:var(--blue);background-size:100% 1px}
+.ft{background:#F2EFE7;padding:56px 48px;border-top:1px solid #D8D0BF}
+.ft-inner{max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:#8A8578}
+.ft-inner .f-brand b{display:block;font-size:11px;letter-spacing:.2em;color:#17181D;margin-bottom:6px}
+.ft-inner .f-mid{color:#4A4C55}
+.ft-inner .f-copy{color:#B3AC9A;letter-spacing:.1em}
+@media (max-width:900px){ .ct{padding:130px 28px 90px} .ct-links{flex-direction:column;gap:44px;margin-top:72px}
+  .ct-item a{font-size:19px} .ft{padding:44px 28px} }
+
+/* ---------- MOBILE SCROLL ANIMATION SYSTEM ---------- */
+@media (max-width:767.98px){
+  .mobile-outcomes{position:absolute}
+  .mo-rail{position:absolute;left:3px;top:30px;bottom:10px;width:1px;background:var(--blue);opacity:.55;transform-origin:top center}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">
+    <div class="name">NIDHI VIJ</div>
+    <div class="desc">Data &amp; AI Engineering</div>
+  </div>
+  <ul>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#data">Data</a></li>
+    <li><a href="#fabric">Fabric</a></li>
+    <li><a href="#builds">Builds</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-vignette"></div>
+
+  <div class="fragments" id="fragments">
+    <div class="frag" data-kind="json"   data-depth="1" style="left:60%;top:11%"><span class="frag-inner"><span class="c">JSON</span>{"record_id":"<em>R-1842</em>",
+  "status":"active",
+  "updated_at":"14:00:00Z"}</span></div>
+    <div class="frag" data-kind="sql"    data-depth="1" style="left:4%;top:9%"><span class="frag-inner"><span class="c">SQL</span><span class="k">SELECT</span> *
+<span class="k">FROM</span> <em>bronze.events</em></span></div>
+    <div class="frag" data-kind="api"    data-depth="2" style="left:84%;top:33%"><span class="frag-inner"><span class="c">API</span><span class="k">GET</span> /api/v2/events
+<em>200</em></span></div>
+    <div class="frag" data-kind="event"  data-depth="2" style="left:76%;top:64%"><span class="frag-inner"><span class="c">EVENT STREAM</span>event.updated.v3
+<span class="k">partition</span> 07 · <span class="k">offset</span> 384920</span></div>
+    <div class="frag" data-kind="pyspark" data-depth="2" style="left:56%;top:78%"><span class="frag-inner"><span class="c">PYSPARK</span>.withColumn(<span class="s">"ingested_at"</span>,
+  current_timestamp())</span></div>
+    <div class="frag" data-kind="schema" data-depth="1" style="left:28%;top:80%"><span class="frag-inner"><span class="c">SCHEMA</span><span class="k">record_id</span>   STRING
+<span class="k">value</span>       DECIMAL(18,2)
+<span class="k">event_ts</span>    TIMESTAMP</span></div>
+    <div class="frag" data-kind="delta"  data-depth="3" style="left:32%;top:7%"><span class="frag-inner"><span class="c">DELTA</span><span class="k">commit_version</span> 42</span></div>
+    <div class="frag" data-kind="record" data-depth="2" data-fragment="duplicate" style="left:86%;top:11%"><span class="frag-inner"><span class="c">DUPLICATE</span>record_id: <em>R-1842</em>
+version: <em class="bad">duplicate</em></span></div>
+    <div class="frag" data-kind="record" data-depth="2" data-fragment="duplicate" style="left:88%;top:50%"><span class="frag-inner"><span class="c">DUPLICATE</span>record_id: <em>R-1842</em>
+version: <em class="bad">duplicate</em></span></div>
+    <div class="frag" data-kind="record" data-depth="3" data-fragment="invalid" style="left:8%;top:84%"><span class="frag-inner"><span class="c">INVALID</span>record_id: <em class="bad">null</em>
+value: <em class="bad">null</em></span></div>
+  </div>
+
+  <span class="lane-label" data-lane="api"      style="left:14%;top:16%">API</span>
+  <span class="lane-label" data-lane="database" style="left:38%;top:16%">Database</span>
+  <span class="lane-label" data-lane="file"     style="left:62%;top:16%">File</span>
+  <span class="lane-label" data-lane="stream"   style="left:86%;top:16%">Stream</span>
+
+  <div class="annotations" aria-hidden="true">
+    <span class="ann" data-ann="cast">Cast</span>
+    <span class="ann" data-ann="validate">Validate</span>
+    <span class="ann" data-ann="deduplicate">Deduplicate</span>
+    <span class="ann" data-ann="standardise">Standardise</span>
+  </div>
+
+  <div class="trusted-node" id="trusted-node" style="left:68%;top:51%">
+    <span class="tn-glow"></span>
+    <span class="tn-dot"></span>
+    <span class="tn-label">Trusted Data</span>
+    <span class="tn-tag">Engineered · Reliable · Useful</span>
+  </div>
+  <svg class="branches-svg" id="branches-svg" aria-hidden="true"></svg>
+  <div class="branch-label" style="left:86%;top:32%"><span class="bl-main">Analytics</span><span class="bl-sub">Power BI · Direct Lake</span></div>
+  <div class="branch-label" style="left:88%;top:44.5%"><span class="bl-main">Data Products</span><span class="bl-sub">Models · APIs</span></div>
+  <div class="branch-label" style="left:88%;top:59.5%"><span class="bl-main">Real-Time</span><span class="bl-sub">Streaming · Events</span></div>
+  <div class="branch-label" style="left:85%;top:72.5%"><span class="bl-main">AI &amp; Apps</span><span class="bl-sub">Agents · Applications</span></div>
+
+  <div class="hero-content">
+    <h1 id="headline">ENGINEERING DATA<br/>FOR WHAT <em>COMES NEXT.</em></h1>
+    <p class="supporting" id="supporting">I design and build modern data platforms, reliable pipelines and analytical systems, from ingestion and transformation through to trusted data products.</p>
+    <div class="mobile-outcomes">
+      <span class="mo-rail" aria-hidden="true"></span>
+      <div class="mo-node"><span class="mo-dot"></span>TRUSTED DATA</div>
+      <div class="mo"><b>Analytics</b><span>Power BI · Direct Lake</span></div>
+      <div class="mo"><b>Data Products</b><span>Models · APIs</span></div>
+      <div class="mo"><b>Real-Time</b><span>Streaming · Events</span></div>
+      <div class="mo"><b>AI &amp; Apps</b><span>Agents · Applications</span></div>
+    </div>
+  </div>
+
+  <div class="hero-cta">Scroll to watch fragmented data become engineered systems<span class="arrow">↓</span></div>
+</section>
+
+<!-- ============================================================
+     02 / EXPERTISE
+     ============================================================ -->
+<section class="exp" id="expertise">
+  <div class="exp-inner">
+    <div class="eyebrow"><b>02</b> / EXPERTISE</div>
+    <h2>MODERN DATA SYSTEMS,<br/>BUILT <em>END TO END.</em></h2>
+    <p class="exp-intro">I design and build the systems that move data from source to trusted, usable products, covering ingestion, transformation, lakehouse architecture, orchestration, real-time processing, observability and analytics enablement.</p>
+
+    <div class="exp-list">
+      <div class="exp-row"><h3>DATA INGESTION</h3><span class="tech">APIs · Databases · Files · Batch</span><span class="rule"></span></div>
+      <div class="exp-row"><h3>TRANSFORMATION</h3><span class="tech">PySpark · Spark · SQL · Delta</span><span class="rule"></span></div>
+      <div class="exp-row"><h3>LAKEHOUSE ARCHITECTURE</h3><span class="tech">Medallion · OneLake · Data Modelling</span><span class="rule"></span></div>
+      <div class="exp-row"><h3>ORCHESTRATION</h3><span class="tech">Pipelines · Metadata-driven frameworks · CI/CD</span><span class="rule"></span></div>
+      <div class="exp-row"><h3>REAL-TIME DATA</h3><span class="tech">Streaming · Eventstream · Event Hub</span><span class="rule"></span></div>
+      <div class="exp-row"><h3>OBSERVABILITY &amp; GOVERNANCE</h3><span class="tech">Monitoring · Data Quality · Access · Reliability</span><span class="rule"></span></div>
+    </div>
+
+    <div class="exp-principles">
+      <div class="p-eyebrow">ENGINEERING PRINCIPLES</div>
+      <div class="p-lines">RELIABLE. <em>OBSERVABLE.</em><br/>MAINTAINABLE. BUILT FOR PRODUCTION.</div>
+      <p class="p-copy">Good data engineering is not only about moving data. It is about building systems that remain understandable, dependable and useful once they reach production.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 / MICROSOFT FABRIC
+     ============================================================ -->
+<section class="fb" id="fabric">
+  <div class="fb-inner">
+    <div class="fb-head">
+      <div class="eyebrow"><b>03</b> / MICROSOFT FABRIC</div>
+      <h2>BUILT FOR<br/><em>MICROSOFT FABRIC.</em></h2>
+      <p class="fb-intro">I design and build modern data platforms in Microsoft Fabric, from ingestion and lakehouse architecture to transformation, orchestration, real-time processing, governance and analytics enablement.</p>
+    </div>
+
+    <div class="fb-stage" id="fb-stage"><span id="data" style="position:absolute;top:-40vh"></span>
+      <div class="fb-scene" id="fb-scene">
+        <svg class="fb-svg" id="fb-svg" aria-hidden="true"></svg>
+
+        <div class="fb-src" style="left:6%;top:16%">REST API</div>
+        <div class="fb-src" style="left:10%;top:29%">SQL SERVER</div>
+        <div class="fb-src" style="left:4%;top:42%">ORACLE</div>
+        <div class="fb-src" style="left:10%;top:55%">FILES</div>
+        <div class="fb-src" style="left:6%;top:68%">EVENT STREAMS</div>
+
+        <div class="fb-ingest" id="fb-ingest">
+          <span class="i-dot"></span>
+          <span class="i-name">INGEST</span>
+          <span class="i-tech">Fabric Data Pipelines · Eventstream</span>
+        </div>
+
+        <div class="fb-spine"></div>
+        <div class="fb-spine-prog" id="fb-spine-prog"></div>
+
+        <div class="fb-tier" data-tier="landing" style="top:22%"><span class="t-dot"></span><span class="t-name">LANDING</span><span class="t-cue">raw</span></div>
+        <div class="fb-tier" data-tier="bronze"  style="top:39.3%"><span class="t-dot"></span><span class="t-name">BRONZE</span><span class="t-cue">validated</span></div>
+        <div class="fb-tier" data-tier="silver"  style="top:56.7%"><span class="t-dot"></span><span class="t-name">SILVER</span><span class="t-cue">conformed</span></div>
+        <div class="fb-tier" data-tier="gold"    style="top:74%"><span class="t-dot"></span><span class="t-name">GOLD</span><span class="t-cue">curated</span></div>
+
+        <div class="fb-ann" data-ann="store"     style="right:54%;top:26.5%"><b>STORE</b>OneLake · Lakehouse</div>
+        <div class="fb-ann" data-ann="transform" style="right:54%;top:59.5%"><b>TRANSFORM</b>Spark / PySpark · Notebooks</div>
+
+        <div class="fb-packet" id="fb-packet"></div>
+
+        <div class="fb-out" style="top:26%"><span class="o-main">ANALYTICS</span><span class="o-sub">Power BI · Direct Lake</span></div>
+        <div class="fb-out" style="top:46%"><span class="o-main">DATA PRODUCTS</span><span class="o-sub">Models · Warehouse</span></div>
+        <div class="fb-out" style="top:66%"><span class="o-main">REAL-TIME</span><span class="o-sub">Streaming · Events</span></div>
+
+        <div class="fb-payoff" id="fb-payoff">ENGINEERED DATA &rarr; USEFUL SYSTEMS</div>
+
+        <div class="fb-foundation" id="fb-foundation">
+          <span class="f-rule"></span>
+          <div class="f-group"><b>OBSERVABILITY</b><span>Monitoring · Data Quality · Reliability</span></div>
+          <div class="f-group"><b>GOVERNANCE</b><span>Access · Security · Control</span></div>
+        </div>
+      </div>
+
+      <div class="fb-mobile">
+        <span class="fm-rail" aria-hidden="true"></span>
+        <span class="fm-packet" aria-hidden="true"></span>
+        <div class="fm-row fm-sources"><b>SOURCES</b><span>REST API · SQL Server · Oracle · Files · Event Streams</span></div>
+        <div class="fm-arrow">&darr;</div>
+        <div class="fm-row fm-ingest-row"><b>INGEST</b><span>Fabric Data Pipelines · Eventstream</span></div>
+        <div class="fm-arrow">&darr;</div>
+        <div class="fm-row fm-lakehouse"><b>LAKEHOUSE</b><span>OneLake · Lakehouse</span></div>
+        <div class="fm-arrow">&darr;</div>
+        <div class="fm-row fm-medallion"><b>LANDING &rarr; BRONZE &rarr; SILVER &rarr; GOLD</b><span>raw &rarr; validated &rarr; conformed &rarr; curated · Spark / PySpark · Notebooks</span></div>
+        <div class="fm-arrow">&darr;</div>
+        <div class="fm-row fm-serve"><b>SERVE</b><span>Power BI · Direct Lake · Models · Warehouse · Streaming · Events</span></div>
+        <div class="fm-platform">
+          <div class="fm-eyebrow">PLATFORM-WIDE</div>
+          <div class="fm-row"><b>OBSERVABILITY</b><span>Monitoring · Data Quality · Reliability</span></div>
+          <div class="fm-row"><b>GOVERNANCE</b><span>Access · Security · Control</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     BUILDS
+     ============================================================ -->
+<section class="bd" id="builds">
+  <div class="bd-inner">
+    <div class="eyebrow">BUILDS</div>
+    <h2>BEYOND DATA<br/><em>PLATFORMS.</em></h2>
+    <p class="bd-intro">Beyond core data engineering, I build practical digital products, websites, internal tools, automation and increasingly AI-enabled applications.</p>
+    <div class="bd-grid">
+      <div class="bd-row"><h3>BUSINESS WEBSITES</h3><p>Modern responsive websites for businesses, professionals and small organisations.</p><span class="kw">Responsive · Modern · Practical</span></div>
+      <div class="bd-row"><h3>DATA-DRIVEN APPLICATIONS</h3><p>Lightweight applications and internal tools built around useful data and workflows.</p><span class="kw">Data-first · Internal tools · APIs</span></div>
+      <div class="bd-row"><h3>AUTOMATION</h3><p>Practical workflow automation and engineering utilities that reduce repetitive work.</p><span class="kw">Workflows · Integration · Productivity</span></div>
+      <div class="bd-row"><h3>AI &amp; AGENTS</h3><p>Expanding into AI-enabled applications, agents and intelligent workflows using modern AI tooling.</p><span class="kw">Agents · AI applications · Automation</span></div>
+    </div>
+    <div class="bd-foot">This website is one of those <b>builds</b>.</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="ab" id="about">
+  <div class="ab-inner">
+    <div class="ab-photo">
+      <img id="ab-img" src="IMG_4480.jpeg" alt="Nidhi Vij" loading="lazy" decoding="async"/>
+    </div>
+    <div class="ab-body">
+      <div class="eyebrow">ABOUT</div>
+      <h2>NIDHI<br/><em>VIJ.</em></h2>
+      <div class="ab-sub">Engineer. Builder. Curious by default.</div>
+      <div class="ab-copy">
+        <p>I'm a Data Engineer based in London, working across modern data platforms, engineering and analytics.</p>
+        <p>Over the past five years, I've worked across technology, analytics and data. For more than four years, my focus has been designing, building and operating modern production data platforms.</p>
+        <p>My engineering work spans Microsoft Fabric, PySpark, SQL, lakehouse and medallion architectures, metadata-driven ingestion, real-time data processing, observability, governance and production platform delivery.</p>
+        <p>I enjoy the point where strong engineering meets useful products: taking complicated systems and making them reliable, understandable and genuinely useful.</p>
+        <p>Alongside data engineering, I'm expanding my work in AI agents, automation, applications and modern web products.</p>
+      </div>
+      <div class="ab-strip">
+        <b>MICROSOFT FABRIC</b> · PYSPARK · SQL · SPARK · LAKEHOUSE · MEDALLION ARCHITECTURE · REAL-TIME DATA · DATA MODELLING · AZURE · AI AGENTS
+      </div>
+      <div class="ab-meta">
+        <div class="m"><b>Domain</b><span>Data &amp; AI Engineering</span></div>
+        <div class="m"><b>Practice</b><span>Data Engineering</span></div>
+        <div class="m"><b>Focus</b><span>Lakehouse · Fabric · Spark</span></div>
+        <div class="m"><b>Base</b><span>London</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT + FOOTER
+     ============================================================ -->
+<section class="ct" id="contact">
+  <div class="ct-inner">
+    <div class="eyebrow">CONTACT</div>
+    <h2>LET'S BUILD<br/><em>SOMETHING USEFUL.</em></h2>
+    <p class="ct-intro">Whether you're hiring, building a data platform, exploring an AI solution, creating a digital product or simply want to talk engineering, I'd be happy to hear from you.</p>
+    <div class="ct-links">
+      <div class="ct-item"><b>EMAIL</b><a href="mailto:work@nidhivij.com">work@nidhivij.com</a></div>
+      <div class="ct-item"><b>LINKEDIN</b><a href="https://www.linkedin.com/in/nidhi-vij/" target="_blank" rel="noopener">linkedin.com/in/nidhi-vij</a></div>
+    </div>
+  </div>
+</section>
+<footer class="ft">
+  <div class="ft-inner">
+    <div class="f-brand"><b>NIDHI VIJ</b>DATA &amp; AI ENGINEERING</div>
+    <div class="f-mid">ENGINEERING DATA FOR WHAT COMES NEXT.</div>
+    <div class="f-copy">&copy; 2026 Nidhi Vij</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  if (!window.gsap || !window.ScrollTrigger) {
+    console.error('GSAP failed to load');
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+
+  var mm = gsap.matchMedia();
+
+  /* Engineered branch geometry: horizontal lead out of the node, one clean
+     angled segment, short horizontal into the label. Shared by the pinned
+     desktop timeline and the reduced-motion static state. */
+  function buildPaths(){
+    var hero = document.getElementById('hero');
+    var hr   = hero.getBoundingClientRect();
+    var node = document.getElementById('trusted-node');
+    var svg  = document.getElementById('branches-svg');
+    var dR   = node.querySelector('.tn-dot').getBoundingClientRect();
+    var cx   = dR.left - hr.left + dR.width/2;
+    var cy   = dR.top  - hr.top  + dR.height/2;
+    svg.setAttribute('viewBox', '0 0 ' + hr.width + ' ' + hr.height);
+    svg.setAttribute('width', hr.width);
+    svg.setAttribute('height', hr.height);
+    svg.innerHTML = '';
+    hero.querySelectorAll('.branch-label').forEach(function(lbl){
+      var lr = lbl.getBoundingClientRect();
+      var tx = lr.left - hr.left - 12;
+      var ty = lr.top  - hr.top  + lr.height/2;
+      var kx = cx + 34;
+      var p  = document.createElementNS('http://www.w3.org/2000/svg','path');
+      p.setAttribute('d', 'M ' + cx + ' ' + cy + ' L ' + kx + ' ' + cy + ' L ' + (tx - 26) + ' ' + ty + ' L ' + tx + ' ' + ty);
+      p.setAttribute('fill', 'none');
+      p.setAttribute('stroke', '#3F5FD2');
+      p.setAttribute('stroke-width', '1.4');
+      p.setAttribute('opacity', '0.52');
+      svg.appendChild(p);
+      var len = p.getTotalLength();
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+    });
+    return svg.querySelectorAll('path');
+  }
+
+  /* ================= DESKTOP · pinned cinematic ================= */
+  mm.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', function(){
+
+    var hero      = document.getElementById('hero');
+    var headline  = document.getElementById('headline');
+    var fragEls   = gsap.utils.toArray(hero.querySelectorAll('.frag'));
+    var dupes     = gsap.utils.toArray(hero.querySelectorAll('[data-fragment="duplicate"]'));
+    var invalidEl = hero.querySelector('[data-fragment="invalid"]');
+    var laneEls   = gsap.utils.toArray(hero.querySelectorAll('.lane-label'));
+    var annEls    = gsap.utils.toArray(hero.querySelectorAll('.ann'));
+    var branchLbl = gsap.utils.toArray(hero.querySelectorAll('.branch-label'));
+    var svg       = document.getElementById('branches-svg');
+    var supp      = document.getElementById('supporting');
+    var node      = document.getElementById('trusted-node');
+    var nodeTag   = node.querySelector('.tn-tag');
+    var nodeDot   = node.querySelector('.tn-dot');
+    var nodeGlow  = node.querySelector('.tn-glow');
+    var cta       = hero.querySelector('.hero-cta');
+
+    /* kind -> ingestion lane (x as fraction of hero width) */
+    var LANE_X = { api:0.14, database:0.38, file:0.62, stream:0.86 };
+    var KIND_TO_LANE = {
+      json:'api', api:'api',
+      sql:'database', schema:'database', record:'database',
+      pyspark:'file', delta:'file',
+      event:'stream'
+    };
+    /* per-fragment y inside its lane (fraction of hero height) */
+    var LANE_Y = { json:0.30, api:0.40, sql:0.30, schema:0.40, pyspark:0.32, delta:0.42, event:0.34 };
+
+    /* MODEL grid: survivors arranged in 2 columns x 4 rows, right of centre */
+    var MODEL_ORDER = ['json','sql','schema','api','pyspark','event','delta'];
+    var MODEL_COL_X = [0.515, 0.615];
+    var MODEL_ROW_Y = [0.35, 0.44, 0.53, 0.625];
+
+    function measure(){
+      var hr = hero.getBoundingClientRect();
+      fragEls.forEach(function(f, i){
+        var r = f.getBoundingClientRect();
+        f._restCx = r.left - hr.left + r.width/2;
+        f._restCy = r.top  - hr.top  + r.height/2;
+        var kind = f.dataset.kind;
+        var lane = KIND_TO_LANE[kind] || 'file';
+        /* ingest target */
+        var ly = LANE_Y[kind] != null ? LANE_Y[kind] : 0.36;
+        if (f.dataset.fragment === 'duplicate'){
+          /* both duplicates live in the database lane; the second merges into the first */
+          ly = (dupes.indexOf(f) === 0) ? 0.30 : 0.30;
+        }
+        if (f.dataset.fragment === 'invalid'){ ly = 0.40; }
+        f._ingestX = hr.width  * LANE_X[lane];
+        f._ingestY = hr.height * ly;
+        /* model target */
+        var mi = MODEL_ORDER.indexOf(kind);
+        if (f.dataset.fragment === 'duplicate'){ mi = MODEL_ORDER.length; } /* surviving dup takes last slot */
+        if (mi >= 0){
+          f._modelX = hr.width  * MODEL_COL_X[mi % 2];
+          f._modelY = hr.height * MODEL_ROW_Y[Math.floor(mi / 2) % 4];
+        } else { f._modelX = null; f._modelY = null; }
+        /* convergence shift toward the TRUSTED DATA node (15-35px) */
+        var dR2 = nodeDot.getBoundingClientRect();
+        var nodeCx = dR2.left - hr.left + dR2.width/2;
+        if (f._modelX != null){
+          var dxn = nodeCx - f._modelX;
+          var sn = Math.abs(dxn) * 0.08 + 15; if (sn > 35) sn = 35;
+          f._nodeShift = (dxn >= 0 ? sn : -sn);
+        } else { f._nodeShift = 0; }
+        f._rot = (i % 2 === 0 ? 1 : -1) * (1.5 + (i % 3));
+      });
+      /* branch geometry: shared engineered path builder */
+      buildPaths();
+    }
+
+    measure();
+    fragEls.forEach(function(f){ gsap.set(f, { rotation: f._rot, transformOrigin:'center' }); });
+
+    var tl = gsap.timeline({
+      defaults: { ease: 'power2.inOut' },
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top',
+        end: '+=3500',
+        scrub: 1.2,
+        pin: true,
+        anticipatePin: 1
+      }
+    });
+
+    var moving = fragEls.filter(function(f){ return f.dataset.depth !== '3'; });
+    var bg     = fragEls.filter(function(f){ return f.dataset.depth === '3' && !f.dataset.fragment; });
+
+    /* ---- PHASE 2 · ATTRACT (0 -> 1): drift halfway, rotations resolve ---- */
+    tl.to(fragEls, {
+      x: function(i, el){ return (el._ingestX - el._restCx) * 0.45; },
+      y: function(i, el){ return (el._ingestY - el._restCy) * 0.40; },
+      rotation: 0,
+      duration: 1
+    }, 0);
+
+    /* ---- PHASE 3 · INGEST (1 -> 2): settle into four source lanes ---- */
+    tl.to(fragEls, {
+      x: function(i, el){ return el._ingestX - el._restCx; },
+      y: function(i, el){ return el._ingestY - el._restCy; },
+      scale: 0.92,
+      duration: 0.9
+    }, 1);
+    tl.to(bg, { opacity: 0.12, duration: 0.6, ease: 'power1.out' }, 1.2);
+    tl.to(laneEls, { opacity: 0.6, duration: 0.5, stagger: 0.07, ease: 'power1.out' }, 1.25);
+    tl.to(laneEls, { opacity: 0, duration: 0.4, ease: 'power1.in' }, 2.75);
+
+    /* ---- PHASE 4 · TRANSFORM (2 -> 3.2): merge duplicates, drop invalid ---- */
+    var dupA = dupes[0], dupB = dupes[1];
+    if (dupB && dupA){
+      tl.to(dupB, {
+        x: function(){ return dupA._ingestX - dupB._restCx; },
+        y: function(){ return dupA._ingestY - dupB._restCy; },
+        scale: 0.85,
+        duration: 0.55
+      }, 2.05);
+      tl.to(dupB, { opacity: 0, scale: 0.6, duration: 0.35, ease: 'power1.in' }, 2.6);
+    }
+    if (invalidEl){
+      tl.to(invalidEl, { borderColor: 'rgba(228,81,61,.7)', duration: 0.25, ease: 'power1.out' }, 2.1);
+      tl.to(invalidEl, { opacity: 0, y: '+=26', scale: 0.8, duration: 0.45, ease: 'power1.in' }, 2.45);
+    }
+    /* sequential annotations: one at a time, timeline-controlled opacity */
+    var annTimes = [2.0, 2.3, 2.6, 2.9];
+    annEls.forEach(function(a, i){
+      var t = annTimes[i];
+      tl.fromTo(a, { opacity: 0, y: 6 }, { opacity: 0.95, y: 0, duration: 0.12, ease: 'power1.out' }, t);
+      tl.to(a, { opacity: 0, y: -6, duration: 0.12, ease: 'power1.in' }, t + 0.17);
+    });
+
+    /* ---- PHASE 5 · MODEL (3.2 -> 4.2): calm, aligned central dataset ---- */
+    var survivors = fragEls.filter(function(f){
+      return f.dataset.fragment !== 'invalid' && f !== dupB && f._modelX != null;
+    });
+    tl.to(survivors, {
+      x: function(i, el){ return el._modelX - el._restCx; },
+      y: function(i, el){ return el._modelY - el._restCy; },
+      scale: 0.8,
+      opacity: 0.8,
+      duration: 0.9,
+      stagger: { amount: 0.25, from: 'start' }
+    }, 3.25);
+
+    /* scroll hint retires once the transformation is clearly underway */
+    tl.to(cta, { opacity: 0, duration: 0.4, ease: 'power1.inOut' }, 1.6);
+
+    /* ---- PHASE 6 · TRUST (4.25 -> 5.0): chaos resolves into one node ---- */
+    var paths = svg.querySelectorAll('path');
+    /* structured residue: the cleaned dataset stays visible and converges
+       gently toward the node: evidence that trusted data came FROM it.
+       Duplicate / invalid / unselected fragments dissolve fully. */
+    var RESIDUE = ['json', 'sql', 'schema', 'pyspark', 'delta'];
+    var residue    = survivors.filter(function(f){ return RESIDUE.indexOf(f.dataset.kind) >= 0; });
+    var dissolving = survivors.filter(function(f){ return RESIDUE.indexOf(f.dataset.kind) < 0; });
+    /* residue hierarchy: SQL/SCHEMA/PYSPARK carry the structure,
+       JSON and DELTA recede to pure texture */
+    var RES_OP = { sql: 0.24, schema: 0.22, pyspark: 0.19, json: 0.11, delta: 0.09 };
+    tl.to(residue, {
+      x: function(i, el){ return (el._modelX - el._restCx) + (el._nodeShift || 0); },
+      opacity: function(i, el){ return RES_OP[el.dataset.kind] || 0.09; },
+      scale: 0.74,
+      duration: 0.6
+    }, 4.25);
+    tl.to(dissolving, { opacity: 0.04, scale: 0.7, duration: 0.55 }, 4.25);
+    tl.to(headline, { scale: 0.76, x: -16, y: -18, duration: 0.7, ease: 'power1.inOut' }, 4.25);
+    tl.to(supp, { opacity: 0.26, duration: 0.5, ease: 'power1.inOut' }, 4.25);
+    tl.fromTo(node, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power1.out' }, 4.7);
+    tl.fromTo(nodeDot, { scale: 0 }, { scale: 1, duration: 0.45, ease: 'back.out(2)' }, 4.7);
+    tl.fromTo(nodeGlow, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power1.out' }, 4.75);
+
+    /* ---- PHASE 7 · SERVE (5.05 -> 6.05): four outcomes, one at a time ---- */
+    paths.forEach(function(pth, i){
+      var t = 5.05 + i * 0.14;
+      tl.to(pth, { strokeDashoffset: 0, duration: 0.3, ease: 'power1.inOut' }, t);
+      tl.to(branchLbl[i], { opacity: 0.95, duration: 0.22, ease: 'power1.out' }, t + 0.2);
+    });
+    tl.fromTo(nodeTag, { opacity: 0 }, { opacity: 0.8, duration: 0.3, ease: 'power1.out' }, 5.8);
+
+    /* HOLD the completed final composition (~20% of the scroll) before release */
+    tl.to({}, { duration: 1.5 }, 6.05);
+
+    /* rebuild-safe: recompute pixel targets on resize */
+    var rT;
+    window.addEventListener('resize', function(){
+      clearTimeout(rT);
+      rT = setTimeout(function(){
+        gsap.set(fragEls, { clearProps: 'transform' });
+        measure();
+        tl.invalidate();
+        ScrollTrigger.refresh();
+      }, 200);
+    });
+
+    return function(){ window.removeEventListener('resize', function(){}); };
+  });
+
+  /* ============ MOBILE HERO · pinned cinematic journey ============ */
+  mm.add('(max-width: 767.98px) and (prefers-reduced-motion: no-preference)', function(){
+    var hero       = document.getElementById('hero');
+    var frags      = gsap.utils.toArray(hero.querySelectorAll('.frag'));
+    var headline   = document.getElementById('headline');
+    var supporting = document.getElementById('supporting');
+    var grid       = hero.querySelector('.hero-grid');
+    var cta        = hero.querySelector('.hero-cta');
+    var outcomes   = hero.querySelector('.mobile-outcomes');
+    var rail       = hero.querySelector('.mo-rail');
+    var moNode     = hero.querySelector('.mo-node');
+    var moRows     = gsap.utils.toArray(hero.querySelectorAll('.mo'));
+
+    function getTargets(){
+      var hr = hero.getBoundingClientRect();
+      return frags.map(function(f, i){
+        var r = f.getBoundingClientRect();
+        var cx = r.left - hr.left + r.width/2;
+        var cy = r.top  - hr.top  + r.height/2;
+        var tx = hr.width * 0.52;
+        var ty = hr.height * 0.49;
+        var dx = (tx - cx) * 0.50;
+        var dy = (ty - cy) * 0.42;
+        dx = Math.max(-150, Math.min(150, dx));
+        dy = Math.max(-150, Math.min(150, dy));
+        return {x:dx,y:dy,rot:(i%2? -1:1)*(2+(i%3))};
+      });
+    }
+    var targets = getTargets();
+
+    gsap.set(outcomes, {opacity:0, y:18});
+    gsap.set(rail, {scaleY:0});
+    gsap.set(moNode, {opacity:0, y:8});
+    gsap.set(moRows, {opacity:0, x:-12});
+
+    var tlm = gsap.timeline({
+      defaults:{ease:'power2.inOut'},
+      scrollTrigger:{
+        trigger:hero,
+        start:'top top',
+        end:'+=1450',
+        scrub:0.9,
+        pin:true,
+        pinSpacing:true,
+        anticipatePin:1,
+        fastScrollEnd:true,
+        invalidateOnRefresh:true
+      }
+    });
+
+    /* 1. fragmented system is alive */
+    tlm.to(grid, {scale:1.10, xPercent:-2, yPercent:-2, backgroundPosition:'26px 32px', duration:1.0}, 0)
+       .to(frags, {
+          x:function(i){return targets[i].x * .45;},
+          y:function(i){return targets[i].y * .38;},
+          rotation:function(i){return targets[i].rot;},
+          scale:.95,
+          duration:1.0
+        }, 0);
+
+    /* 2. data converges */
+    tlm.to(frags, {
+      x:function(i){return targets[i].x;},
+      y:function(i){return targets[i].y;},
+      rotation:0,
+      scale:.80,
+      opacity:.20,
+      stagger:{amount:.22,from:'edges'},
+      duration:.95
+    }, 1.0)
+    .to(headline,{scale:.82,x:-5,y:-18,transformOrigin:'left top',duration:.75},1.05)
+    .to(supporting,{opacity:.18,y:-8,duration:.55},1.12)
+    .to(cta,{opacity:0,y:8,duration:.3},1.15);
+
+    /* 3. resolve into trusted data and outcomes */
+    tlm.to(frags,{opacity:.05,scale:.72,duration:.55},1.80)
+       .to(headline,{opacity:.18,y:-38,duration:.38},1.82)
+       .to(supporting,{opacity:0,y:-18,duration:.32},1.82)
+       .to(outcomes,{opacity:1,y:0,duration:.35},1.98)
+       .to(moNode,{opacity:1,y:0,duration:.25},2.02)
+       .to(rail,{scaleY:1,duration:.65,ease:'power1.inOut'},2.06);
+
+    moRows.forEach(function(row,i){
+      tlm.to(row,{opacity:1,x:0,duration:.22,ease:'power2.out'},2.15+i*.12);
+    });
+
+    /* hold final composition */
+    tlm.to({}, {duration:.22}, 2.72);
+
+    return function(){};
+  });
+
+  /* ============ MOBILE FABRIC · pinned vertical architecture journey ============ */
+  mm.add('(max-width: 767.98px) and (prefers-reduced-motion: no-preference)', function(){
+    var stage  = document.getElementById('fb-stage');
+    var fbm    = document.querySelector('.fb-mobile');
+    if (!stage || !fbm) return;
+
+    var rail     = fbm.querySelector('.fm-rail');
+    var packet   = fbm.querySelector('.fm-packet');
+    var rows     = gsap.utils.toArray(fbm.children).filter(function(el){
+      return el.classList && el.classList.contains('fm-row');
+    });
+    var platform = fbm.querySelector('.fm-platform');
+
+    function rowY(row){
+      var br = fbm.getBoundingClientRect();
+      var rr = row.getBoundingClientRect();
+      return rr.top - br.top + 3;
+    }
+
+    gsap.set(rows,{opacity:.22,y:16});
+    gsap.set(rail,{scaleY:0});
+    gsap.set(packet,{opacity:0,y:0});
+    gsap.set(platform,{opacity:0,y:10});
+
+    var ftm = gsap.timeline({
+      defaults:{ease:'power2.inOut'},
+      scrollTrigger:{
+        trigger:stage,
+        start:'top top',
+        end:'+=1550',
+        scrub:.8,
+        pin:true,
+        pinSpacing:true,
+        anticipatePin:1,
+        fastScrollEnd:true,
+        invalidateOnRefresh:true,
+        onEnter:function(){ gsap.to('.nav',{opacity:0,duration:.18,overwrite:true}); },
+        onEnterBack:function(){ gsap.to('.nav',{opacity:0,duration:.18,overwrite:true}); },
+        onLeave:function(){ gsap.to('.nav',{opacity:1,duration:.22,overwrite:true}); },
+        onLeaveBack:function(){ gsap.to('.nav',{opacity:1,duration:.22,overwrite:true}); }
+      }
+    });
+
+    /* stage 1: sources */
+    ftm.to(rows[0],{opacity:1,y:0,duration:.35},0)
+       .to(packet,{opacity:1,duration:.2},0.05)
+       .to(rail,{scaleY:.18,duration:.35,ease:'power1.inOut'},0.1)
+       .call(function(){ rows[0] && rows[0].classList.add('fm-active'); },null,0.15);
+
+    /* stage 2: ingest */
+    ftm.to(packet,{y:function(){return rowY(rows[1])-50;},duration:.45,ease:'none'},0.45)
+       .to(rail,{scaleY:.36,duration:.45,ease:'none'},0.45)
+       .to(rows[0],{opacity:.45,duration:.25},0.55)
+       .to(rows[1],{opacity:1,y:0,duration:.3},0.55)
+       .call(function(){ rows.forEach(r=>r.classList.remove('fm-active')); rows[1]&&rows[1].classList.add('fm-active'); },null,0.62);
+
+    /* stage 3: lakehouse */
+    ftm.to(packet,{y:function(){return rowY(rows[2])-50;},duration:.45,ease:'none'},0.95)
+       .to(rail,{scaleY:.54,duration:.45,ease:'none'},0.95)
+       .to(rows[1],{opacity:.45,duration:.25},1.05)
+       .to(rows[2],{opacity:1,y:0,duration:.3},1.05)
+       .call(function(){ rows.forEach(r=>r.classList.remove('fm-active')); rows[2]&&rows[2].classList.add('fm-active'); },null,1.12);
+
+    /* stage 4: medallion */
+    ftm.to(packet,{y:function(){return rowY(rows[3])-50;},duration:.52,ease:'none'},1.45)
+       .to(rail,{scaleY:.74,duration:.52,ease:'none'},1.45)
+       .to(rows[2],{opacity:.45,duration:.25},1.55)
+       .to(rows[3],{opacity:1,y:0,duration:.3},1.55)
+       .call(function(){ rows.forEach(r=>r.classList.remove('fm-active')); rows[3]&&rows[3].classList.add('fm-active'); },null,1.62);
+
+    /* stage 5: serve */
+    ftm.to(packet,{y:function(){return rowY(rows[4])-50;},duration:.52,ease:'none'},2.00)
+       .to(rail,{scaleY:.94,duration:.52,ease:'none'},2.00)
+       .to(rows[3],{opacity:.45,duration:.25},2.10)
+       .to(rows[4],{opacity:1,y:0,duration:.3},2.10)
+       .call(function(){ rows.forEach(r=>r.classList.remove('fm-active')); rows[4]&&rows[4].classList.add('fm-active'); },null,2.17)
+       .to(platform,{opacity:1,y:0,duration:.30},2.26)
+       .to(packet,{scale:1.35,duration:.20,ease:'back.out(2)'},2.30);
+
+    /* hold the completed architecture */
+    ftm.to({}, {duration:.22}, 2.60);
+
+    return function(){};
+  });
+
+  /* ============ REDUCED MOTION · polished static final state ============ */
+  mm.add('(prefers-reduced-motion: reduce) and (min-width: 768px)', function(){
+    var paths = buildPaths();
+    paths.forEach(function(p){ p.style.strokeDashoffset = 0; });
+    gsap.set('#headline',   { scale: 0.76, x: -16, y: -18, transformOrigin: 'left center' });
+    gsap.set('#supporting', { opacity: 0.26 });
+    gsap.set('.frag', { opacity: 0.04 });
+    gsap.set('.frag[data-kind="sql"]',     { opacity: 0.24 });
+    gsap.set('.frag[data-kind="schema"]',  { opacity: 0.22 });
+    gsap.set('.frag[data-kind="pyspark"]', { opacity: 0.19 });
+    gsap.set('.frag[data-kind="json"]',    { opacity: 0.11 });
+    gsap.set('.frag[data-kind="delta"]',   { opacity: 0.09 });
+    gsap.set('.frag[data-fragment]',       { opacity: 0 });
+    gsap.set('#trusted-node', { opacity: 1 });
+    gsap.set('.tn-glow',    { opacity: 1 });
+    gsap.set('.branch-label', { opacity: 0.95 });
+    gsap.set('.tn-tag',     { opacity: 0.8 });
+    gsap.set('.hero-cta',   { opacity: 0 });
+  });
+  mm.add('(prefers-reduced-motion: reduce) and (max-width: 767.98px)', function(){
+    gsap.set('.frag', { opacity: 0.22 });
+  });
+
+  /* ============ 02 / EXPERTISE · quiet editorial reveals (no pinning) ============ */
+  mm.add('(prefers-reduced-motion: no-preference)', function(){
+    var exp = document.querySelector('.exp');
+    if (!exp) return;
+    gsap.from('.exp .eyebrow, .exp h2, .exp-intro', {
+      opacity: 0, y: 26, duration: 0.9, ease: 'power3.out', stagger: 0.12,
+      scrollTrigger: { trigger: exp, start: 'top 70%', once: true }
+    });
+    gsap.utils.toArray('.exp-row').forEach(function(row){
+      var rtl = gsap.timeline({
+        scrollTrigger: { trigger: row, start: 'top 88%', once: true }
+      });
+      rtl.fromTo(row.querySelector('.rule'), { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: 'power2.out' }, 0)
+         .from(row.querySelector('h3'),    { opacity: 0, y: 18, duration: 0.65, ease: 'power3.out', clearProps: 'transform,opacity' }, 0.1)
+         .from(row.querySelector('.tech'), { opacity: 0, duration: 0.6, ease: 'power1.out' }, 0.28);
+    });
+    gsap.from('.exp-principles .p-eyebrow, .exp-principles .p-lines, .exp-principles .p-copy', {
+      opacity: 0, y: 22, duration: 0.8, ease: 'power3.out', stagger: 0.14,
+      scrollTrigger: { trigger: '.exp-principles', start: 'top 84%', once: true }
+    });
+    ScrollTrigger.refresh();
+  });
+
+  /* ============ 03 / MICROSOFT FABRIC · pinned architecture journey ============ */
+  mm.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', function(){
+    var stage  = document.getElementById('fb-stage');
+    var scene  = document.getElementById('fb-scene');
+    if (!stage || !scene) return;
+    var svg    = document.getElementById('fb-svg');
+    var srcs   = gsap.utils.toArray(scene.querySelectorAll('.fb-src'));
+    var ingest = document.getElementById('fb-ingest');
+    var tiers  = gsap.utils.toArray(scene.querySelectorAll('.fb-tier'));
+    var anns   = gsap.utils.toArray(scene.querySelectorAll('.fb-ann'));
+    var packet = document.getElementById('fb-packet');
+    var outs   = gsap.utils.toArray(scene.querySelectorAll('.fb-out'));
+    var payoff = document.getElementById('fb-payoff');
+    var found  = document.getElementById('fb-foundation');
+    var fRule  = found.querySelector('.f-rule');
+    var prog   = document.getElementById('fb-spine-prog');
+
+    function centre(el, sr){
+      var r = el.getBoundingClientRect();
+      return { x: r.left - sr.left + r.width/2, y: r.top - sr.top + r.height/2, w: r.width, h: r.height, l: r.left - sr.left };
+    }
+    function drawPath(x1, y1, x2, y2, k){
+      var mx = x1 + Math.max(28, (x2 - x1) * (k || 0.45));
+      var p = document.createElementNS('http://www.w3.org/2000/svg','path');
+      p.setAttribute('d', 'M ' + x1 + ' ' + y1 + ' L ' + mx + ' ' + y1 + ' L ' + mx + ' ' + y2 + ' L ' + x2 + ' ' + y2);
+      p.setAttribute('stroke-width', '1.3');
+      p.setAttribute('opacity', '0.5');
+      svg.appendChild(p);
+      var len = p.getTotalLength();
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+      return p;
+    }
+
+    var geo = {};
+    function build(){
+      var sr = scene.getBoundingClientRect();
+      svg.setAttribute('viewBox', '0 0 ' + sr.width + ' ' + sr.height);
+      svg.setAttribute('width', sr.width); svg.setAttribute('height', sr.height);
+      svg.innerHTML = '';
+      geo.sr = sr;
+      geo.ing = centre(ingest.querySelector('.i-dot'), sr);
+      geo.tierPts = {};
+      tiers.forEach(function(t){
+        geo.tierPts[t.dataset.tier] = centre(t.querySelector('.t-dot'), sr);
+      });
+      geo.srcPaths = srcs.map(function(s){
+        var c = centre(s, sr);
+        return drawPath(c.x + c.w/2, c.y, geo.ing.x - 7, geo.ing.y, 0.5);
+      });
+      geo.ingToLanding = drawPath(geo.ing.x + 7, geo.ing.y, geo.tierPts.landing.x - 3, geo.tierPts.landing.y, 0.93);
+      var ks = [0.42, 0.56, 0.7];
+      geo.outPaths = outs.map(function(o, i){
+        var r = o.getBoundingClientRect();
+        var lx = r.left - sr.left;
+        var ly = r.top - sr.top + r.height/2;
+        return drawPath(geo.tierPts.gold.x + 5, geo.tierPts.gold.y, lx - 16, ly, ks[i]);
+      });
+    }
+    build();
+
+    gsap.set(srcs, { opacity: 0, y: 14 });
+    gsap.set(ingest, { opacity: 0 });
+
+    var ftl = gsap.timeline({
+      defaults: { ease: 'power2.inOut' },
+      scrollTrigger: { trigger: stage, start: 'top top', end: '+=2600', scrub: 0.8, pin: true, anticipatePin: 1 }
+    });
+
+    function activate(name, t, isGold){
+      ftl.to('.fb-tier[data-tier="' + name + '"] .t-dot',  { backgroundColor: '#3F5FD2', duration: 0.3 }, t);
+      ftl.to('.fb-tier[data-tier="' + name + '"] .t-name', { color: isGold ? '#3F5FD2' : '#17181D', duration: 0.3 }, t);
+      ftl.to('.fb-tier[data-tier="' + name + '"] .t-cue',  { opacity: 0.85, duration: 0.3 }, t + 0.08);
+    }
+
+    /* 1 - SOURCES appear, distributed */
+    ftl.to(srcs, { opacity: 1, y: 0, duration: 0.55, stagger: 0.09, ease: 'power2.out' }, 0);
+
+    /* 2 - INGEST: connectors draw, sources drift toward the convergence node */
+    ftl.to(geo.srcPaths, { strokeDashoffset: 0, duration: 0.5, stagger: 0.08, ease: 'power1.inOut' }, 0.7);
+    ftl.to(srcs, { x: 22, duration: 0.6 }, 0.7);
+    ftl.to(ingest, { opacity: 1, duration: 0.4, ease: 'power1.out' }, 0.9);
+
+    /* 3 - LAKEHOUSE: sources recede to context, packet enters LANDING */
+    ftl.to(srcs, { opacity: 0.2, duration: 0.5 }, 1.5);
+    ftl.to(geo.srcPaths, { opacity: 0.18, duration: 0.5 }, 1.5);
+    ftl.to(geo.ingToLanding, { strokeDashoffset: 0, duration: 0.45, ease: 'power1.inOut' }, 1.5);
+    ftl.fromTo(packet, { opacity: 0 }, { opacity: 1, duration: 0.25 }, 1.6);
+    ftl.set(packet, { left: geo.ing.x + 'px', top: geo.ing.y + 'px' }, 1.6);
+    ftl.to(packet, { left: geo.tierPts.landing.x + 'px', top: geo.tierPts.landing.y + 'px', duration: 0.35 }, 1.75);
+    activate('landing', 1.85, false);
+    ftl.to(anns.filter(function(a){return a.dataset.ann==='store';}), { opacity: 1, duration: 0.35 }, 1.95);
+
+    /* 4 - TRANSFORM: packet descends the medallion spine */
+    ftl.to(packet, { left: geo.tierPts.bronze.x + 'px', top: geo.tierPts.bronze.y + 'px', duration: 0.4 }, 2.25);
+    ftl.to(prog, { scaleY: 0.333, duration: 0.4 }, 2.25);
+    activate('bronze', 2.35, false);
+    ftl.to(anns.filter(function(a){return a.dataset.ann==='transform';}), { opacity: 1, duration: 0.35 }, 2.5);
+    ftl.to(packet, { left: geo.tierPts.silver.x + 'px', top: geo.tierPts.silver.y + 'px', duration: 0.4 }, 2.75);
+    ftl.to(prog, { scaleY: 0.667, duration: 0.4 }, 2.75);
+    activate('silver', 2.85, false);
+    ftl.to(packet, { left: geo.tierPts.gold.x + 'px', top: geo.tierPts.gold.y + 'px', duration: 0.4 }, 3.25);
+    ftl.to(prog, { scaleY: 1, duration: 0.4 }, 3.25);
+    activate('gold', 3.35, true);
+    ftl.to('.fb-tier[data-tier="gold"] .t-dot', { scale: 1.5, duration: 0.3, ease: 'back.out(2)' }, 3.35);
+    ftl.to(packet, { scale: 1.4, opacity: 0.9, duration: 0.3 }, 3.4);
+
+    /* 5 - PLATFORM FOUNDATION: observability + governance span the system */
+    ftl.to(found, { opacity: 1, duration: 0.4, ease: 'power1.out' }, 3.7);
+    ftl.to(fRule, { scaleX: 1, duration: 0.6, ease: 'power2.out' }, 3.7);
+
+    /* 6 - SERVE: GOLD branches toward useful systems */
+    ftl.to(geo.outPaths, { strokeDashoffset: 0, duration: 0.4, stagger: 0.14, ease: 'power1.inOut' }, 3.9);
+    ftl.to(outs, { opacity: 1, duration: 0.3, stagger: 0.14, ease: 'power1.out' }, 4.05);
+    ftl.to(['.fb-tier[data-tier="landing"]', '.fb-tier[data-tier="bronze"]', '.fb-tier[data-tier="silver"]'], { opacity: 0.65, duration: 0.4 }, 4.0);
+    ftl.to(ingest, { opacity: 0.5, duration: 0.4 }, 4.0);
+
+    /* 7 - conceptual payoff */
+    ftl.to(payoff, { opacity: 0.9, duration: 0.35, ease: 'power1.out' }, 4.55);
+
+    /* HOLD the completed architecture (~17% of the scroll) */
+    ftl.to({}, { duration: 1.0 }, 4.75);
+
+    /* headline reveal (unpinned, before the stage) */
+    gsap.from('.fb .eyebrow, .fb h2, .fb-intro', {
+      opacity: 0, y: 26, duration: 0.9, ease: 'power3.out', stagger: 0.12,
+      scrollTrigger: { trigger: '.fb-head', start: 'top 72%', once: true }
+    });
+
+    var fbRT;
+    window.addEventListener('resize', function(){
+      clearTimeout(fbRT);
+      fbRT = setTimeout(function(){ build(); ftl.invalidate(); ScrollTrigger.refresh(); }, 200);
+    });
+    return function(){ window.removeEventListener('resize', function(){}); };
+  });
+
+  /* ============ BUILDS · ABOUT · CONTACT reveals (no pinning) ============ */
+  mm.add('(prefers-reduced-motion: no-preference)', function(){
+    gsap.from('.bd .eyebrow, .bd h2, .bd-intro', {
+      opacity: 0, y: 26, duration: 0.9, ease: 'power3.out', stagger: 0.12,
+      scrollTrigger: { trigger: '.bd', start: 'top 72%', once: true } });
+    gsap.utils.toArray('.bd-row').forEach(function(row, i){
+      gsap.from(row, { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out', delay: (i % 2) * 0.12,
+        scrollTrigger: { trigger: row, start: 'top 88%', once: true } });
+    });
+    gsap.from('.bd-foot', { opacity: 0, duration: 0.8, ease: 'power1.out',
+      scrollTrigger: { trigger: '.bd-foot', start: 'top 92%', once: true } });
+    gsap.fromTo('#ab-img', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.ab', start: 'top 65%', once: true } });
+    gsap.from('.ab .eyebrow, .ab h2, .ab-sub, .ab-copy p', {
+      opacity: 0, y: 24, duration: 0.85, ease: 'power3.out', stagger: 0.1,
+      scrollTrigger: { trigger: '.ab-body', start: 'top 70%', once: true } });
+    gsap.from('.ab-strip, .ab-meta .m', { opacity: 0, y: 16, duration: 0.7, ease: 'power2.out', stagger: 0.09,
+      scrollTrigger: { trigger: '.ab-strip', start: 'top 88%', once: true } });
+    gsap.from('.ct .eyebrow, .ct h2, .ct-intro', {
+      opacity: 0, y: 26, duration: 0.9, ease: 'power3.out', stagger: 0.12,
+      scrollTrigger: { trigger: '.ct', start: 'top 72%', once: true } });
+    gsap.utils.toArray('.ct-item').forEach(function(row, i){
+      gsap.from(row, { opacity: 0, y: 18, duration: 0.7, ease: 'power3.out', delay: i * 0.1,
+        scrollTrigger: { trigger: row, start: 'top 90%', once: true } });
+    });
+    ScrollTrigger.refresh();
+  });
+})();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
