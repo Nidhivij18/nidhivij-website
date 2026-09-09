@@ -116,21 +116,28 @@ body{background:var(--ink);color:var(--cream);font-family:var(--sans);overflow-x
 @media (max-width:767.98px){
   .nav{padding:18px 20px}
   .nav ul{display:none}
-  .hero{height:auto;min-height:100vh}
-  .hero-content{padding:120px 24px 100px;justify-content:flex-start}
-  .hero h1{font-size:clamp(42px,12.5vw,60px)}
-  .supporting{font-size:14px;margin-top:26px}
-  .frag{font-size:9.5px;padding:7px 10px}
-  .frag:nth-child(n+5){display:none}
-  .frag[data-depth]{opacity:.22}
+  .hero{height:100svh;min-height:620px}
+  .hero-content{padding:104px 22px 92px;justify-content:flex-start}
+  .hero h1{font-size:clamp(40px,11.8vw,58px);line-height:.96}
+  .supporting{font-size:13.5px;margin-top:24px;max-width:92%}
+  .hero-grid{will-change:transform,background-position}
+  .frag{font-size:8.8px;padding:6px 8px;max-width:46vw;overflow:hidden}
+  .frag:nth-child(n+7){display:none}
+  .frag[data-depth]{opacity:.42}
+  .frag[data-depth="2"]{opacity:.32}
+  .frag[data-depth="3"]{opacity:.18}
   .lane-label,.annotations,.branches-svg,.branch-label,.trusted-node{display:none}
-  .hero-cta{left:24px;bottom:28px}
-  .mobile-outcomes{display:block;margin-top:44px;font-family:var(--mono)}
-  .mo-node{display:flex;align-items:center;gap:9px;font-size:10.5px;font-weight:500;letter-spacing:.16em;color:var(--cream);margin-bottom:16px}
+  .hero-cta{left:22px;bottom:22px;font-size:9px;max-width:78%}
+
+  .mobile-outcomes{
+    display:block;position:absolute;left:22px;right:22px;top:52%;
+    margin:0;font-family:var(--mono);opacity:0;pointer-events:none
+  }
+  .mo-node{display:flex;align-items:center;gap:9px;font-size:10.5px;font-weight:500;letter-spacing:.16em;color:var(--cream);margin-bottom:12px}
   .mo-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 10px rgba(63,95,210,.8)}
-  .mo{padding:10px 0 10px 16px;border-left:1px solid rgba(63,95,210,.5)}
-  .mo b{display:block;font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--cream)}
-  .mo span{display:block;font-size:9px;letter-spacing:.05em;color:#7F8495;margin-top:3px}
+  .mo{padding:8px 0 8px 16px;border-left:1px solid rgba(63,95,210,.5)}
+  .mo b{display:block;font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--cream)}
+  .mo span{display:block;font-size:8.7px;letter-spacing:.05em;color:#7F8495;margin-top:2px}
 }
 @media (prefers-reduced-motion:reduce){
   .frag-inner,.hero-cta .arrow{animation:none}
@@ -209,14 +216,49 @@ body{background:var(--ink);color:var(--cream);font-family:var(--sans);overflow-x
 .fb-mobile{display:none}
 @media (max-width:900px){ .fb{padding:130px 28px 90px} }
 @media (max-width:767.98px){
+  .fb{padding:120px 22px 92px}
+  .fb-stage{margin-top:64px}
   .fb-scene{display:none}
-  .fb-mobile{display:block;margin-top:64px;border-top:1px solid #D8D0BF}
-  .fm-row{padding:20px 0;border-bottom:1px solid #D8D0BF}
-  .fm-row b{display:block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.18em;color:#17181D}
-  .fm-row span{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;color:#6E6A5E;margin-top:6px}
-  .fm-arrow{font-family:var(--mono);font-size:12px;color:var(--blue);padding:6px 0 0}
-  .fm-platform{margin-top:30px;padding-top:24px;border-top:1px solid #D8D0BF}
-  .fm-platform .fm-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;color:#8A8578;margin-bottom:6px}
+  .fb-mobile{
+    display:block;position:relative;height:96svh;min-height:740px;
+    margin-top:44px;border-top:1px solid #D8D0BF;border-bottom:1px solid #D8D0BF;
+    overflow:hidden;padding:38px 8px 34px 34px
+  }
+  .fm-rail{
+    position:absolute;left:14px;top:54px;bottom:54px;width:1px;
+    background:#CFC7B4;opacity:.9;transform-origin:top center
+  }
+  .fm-packet{
+    position:absolute;left:10px;top:50px;width:9px;height:9px;border-radius:50%;
+    background:var(--blue);box-shadow:0 0 14px rgba(63,95,210,.7);
+    opacity:0;z-index:3
+  }
+  .fm-row{
+    position:absolute;left:34px;right:8px;padding:0 0 0 12px;border:0;
+    opacity:.22;transform:translateY(16px)
+  }
+  .fb-mobile > .fm-sources{top:7%}
+  .fb-mobile > .fm-ingest-row{top:22%}
+  .fb-mobile > .fm-lakehouse{top:37%}
+  .fb-mobile > .fm-medallion{top:48%}
+  .fb-mobile > .fm-serve{top:62%}
+  .fm-row b{display:block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.16em;color:#17181D}
+  .fm-row span{display:block;font-family:var(--mono);font-size:9px;line-height:1.38;letter-spacing:.035em;color:#6E6A5E;margin-top:6px}
+  .fm-row::before{
+    content:"";position:absolute;left:-25px;top:3px;width:8px;height:8px;border-radius:50%;
+    background:#CFC7B4;transition:background-color .2s ease,box-shadow .2s ease,transform .2s ease
+  }
+  .fm-row.fm-active{opacity:1}
+  .fm-row.fm-active::before{opacity:0}
+  .fm-arrow{display:none}
+  .fm-platform{
+    position:absolute;left:34px;right:8px;top:auto;bottom:3%;margin:0;padding:0;
+    border-top:0;opacity:0;background:#F2EFE7
+  }
+  .fm-platform .fm-eyebrow{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;color:#8A8578;margin-bottom:8px}
+  .fm-platform .fm-row{position:static;opacity:.55;transform:none;padding:2px 0 0 12px;min-height:0}
+  .fm-platform .fm-row::before{display:none}
+  .fm-platform .fm-row + .fm-row{margin-top:8px}
 }
 @media (prefers-reduced-motion:reduce){
   .fb-scene{display:none}
@@ -288,14 +330,8 @@ body{background:var(--ink);color:var(--cream);font-family:var(--sans);overflow-x
 
 /* ---------- MOBILE SCROLL ANIMATION SYSTEM ---------- */
 @media (max-width:767.98px){
-  .mobile-outcomes{position:relative}
-  .mo-rail{position:absolute;left:3px;top:30px;bottom:12px;width:1px;background:var(--blue);opacity:.55;transform-origin:top center}
-  .fb-mobile{position:relative}
-  .fm-rail{position:absolute;left:6px;top:26px;bottom:26px;width:1px;background:var(--blue);opacity:.45;transform-origin:top center}
-  .fm-row{padding-left:28px;position:relative}
-  .fm-row::before{content:"";position:absolute;left:2.5px;top:26px;width:8px;height:8px;border-radius:50%;background:#CFC7B4}
-  .fm-row.fm-active::before{background:var(--blue)}
-  .fm-arrow{padding-left:28px}
+  .mobile-outcomes{position:absolute}
+  .mo-rail{position:absolute;left:3px;top:30px;bottom:10px;width:1px;background:var(--blue);opacity:.55;transform-origin:top center}
 }
 </style>
 </head>
@@ -465,15 +501,16 @@ value: <em class="bad">null</em></span></div>
 
       <div class="fb-mobile">
         <span class="fm-rail" aria-hidden="true"></span>
-        <div class="fm-row"><b>SOURCES</b><span>REST API · SQL Server · Oracle · Files · Event Streams</span></div>
+        <span class="fm-packet" aria-hidden="true"></span>
+        <div class="fm-row fm-sources"><b>SOURCES</b><span>REST API · SQL Server · Oracle · Files · Event Streams</span></div>
         <div class="fm-arrow">&darr;</div>
-        <div class="fm-row"><b>INGEST</b><span>Fabric Data Pipelines · Eventstream</span></div>
+        <div class="fm-row fm-ingest-row"><b>INGEST</b><span>Fabric Data Pipelines · Eventstream</span></div>
         <div class="fm-arrow">&darr;</div>
-        <div class="fm-row"><b>LAKEHOUSE</b><span>OneLake · Lakehouse</span></div>
+        <div class="fm-row fm-lakehouse"><b>LAKEHOUSE</b><span>OneLake · Lakehouse</span></div>
         <div class="fm-arrow">&darr;</div>
-        <div class="fm-row"><b>LANDING &rarr; BRONZE &rarr; SILVER &rarr; GOLD</b><span>raw &rarr; validated &rarr; conformed &rarr; curated · Spark / PySpark · Notebooks</span></div>
+        <div class="fm-row fm-medallion"><b>LANDING &rarr; BRONZE &rarr; SILVER &rarr; GOLD</b><span>raw &rarr; validated &rarr; conformed &rarr; curated · Spark / PySpark · Notebooks</span></div>
         <div class="fm-arrow">&darr;</div>
-        <div class="fm-row"><b>SERVE</b><span>Power BI · Direct Lake · Models · Warehouse · Streaming · Events</span></div>
+        <div class="fm-row fm-serve"><b>SERVE</b><span>Power BI · Direct Lake · Models · Warehouse · Streaming · Events</span></div>
         <div class="fm-platform">
           <div class="fm-eyebrow">PLATFORM-WIDE</div>
           <div class="fm-row"><b>OBSERVABILITY</b><span>Monitoring · Data Quality · Reliability</span></div>
@@ -802,72 +839,191 @@ value: <em class="bad">null</em></span></div>
     return function(){ window.removeEventListener('resize', function(){}); };
   });
 
-  /* ============ MOBILE HERO · scroll-driven convergence, no pinning ============ */
+  /* ============ MOBILE HERO · pinned cinematic journey ============ */
   mm.add('(max-width: 767.98px) and (prefers-reduced-motion: no-preference)', function(){
-    var hero  = document.getElementById('hero');
-    var frags = gsap.utils.toArray(hero.querySelectorAll('.frag'));
-    var mo    = hero.querySelector('.mobile-outcomes');
-    var rail  = hero.querySelector('.mo-rail');
+    var hero       = document.getElementById('hero');
+    var frags      = gsap.utils.toArray(hero.querySelectorAll('.frag'));
+    var headline   = document.getElementById('headline');
+    var supporting = document.getElementById('supporting');
+    var grid       = hero.querySelector('.hero-grid');
+    var cta        = hero.querySelector('.hero-cta');
+    var outcomes   = hero.querySelector('.mobile-outcomes');
+    var rail       = hero.querySelector('.mo-rail');
+    var moNode     = hero.querySelector('.mo-node');
+    var moRows     = gsap.utils.toArray(hero.querySelectorAll('.mo'));
 
-    /* entrance: headline settles, fragments arrive */
-    gsap.from('#headline',   { opacity: 0, y: 34, duration: 1.1, ease: 'power3.out', delay: 0.1 });
-    gsap.from('#supporting', { opacity: 0, y: 22, duration: 1.0, ease: 'power3.out', delay: 0.35 });
-    gsap.from('.frag',       { opacity: 0, y: 14, duration: 0.9, ease: 'power2.out', stagger: 0.1, delay: 0.55 });
-    gsap.from('.hero-cta',   { opacity: 0, duration: 0.8, delay: 1.0 });
+    function getTargets(){
+      var hr = hero.getBoundingClientRect();
+      return frags.map(function(f, i){
+        var r = f.getBoundingClientRect();
+        var cx = r.left - hr.left + r.width/2;
+        var cy = r.top  - hr.top  + r.height/2;
+        var tx = hr.width * 0.52;
+        var ty = hr.height * 0.49;
+        var dx = (tx - cx) * 0.50;
+        var dy = (ty - cy) * 0.42;
+        dx = Math.max(-150, Math.min(150, dx));
+        dy = Math.max(-150, Math.min(150, dy));
+        return {x:dx,y:dy,rot:(i%2? -1:1)*(2+(i%3))};
+      });
+    }
+    var targets = getTargets();
 
-    /* fragments gently converge + recede as the hero scrolls away */
-    var hr = hero.getBoundingClientRect();
-    var drifts = frags.map(function(f){
-      var r = f.getBoundingClientRect();
-      var dx = (hr.width * 0.5 - (r.left - hr.left + r.width / 2)) * 0.08;
-      var dy = (hr.height * 0.5 - (r.top - hr.top + r.height / 2)) * 0.05;
-      if (dx > 24) dx = 24; if (dx < -24) dx = -24;
-      if (dy > 18) dy = 18; if (dy < -18) dy = -18;
-      return { dx: dx, dy: dy };
+    gsap.set(outcomes, {opacity:0, y:18});
+    gsap.set(rail, {scaleY:0});
+    gsap.set(moNode, {opacity:0, y:8});
+    gsap.set(moRows, {opacity:0, x:-12});
+
+    var tlm = gsap.timeline({
+      defaults:{ease:'power2.inOut'},
+      scrollTrigger:{
+        trigger:hero,
+        start:'top top',
+        end:'+=1450',
+        scrub:0.9,
+        pin:true,
+        pinSpacing:true,
+        anticipatePin:1,
+        fastScrollEnd:true,
+        invalidateOnRefresh:true
+      }
     });
-    gsap.to(frags, {
-      x: function(i){ return drifts[i].dx; },
-      y: function(i){ return drifts[i].dy; },
-      opacity: 0.12,
-      scale: 0.94,
-      ease: 'none',
-      scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 0.6 }
+
+    /* 1. fragmented system is alive */
+    tlm.to(grid, {scale:1.10, xPercent:-2, yPercent:-2, backgroundPosition:'26px 32px', duration:1.0}, 0)
+       .to(frags, {
+          x:function(i){return targets[i].x * .45;},
+          y:function(i){return targets[i].y * .38;},
+          rotation:function(i){return targets[i].rot;},
+          scale:.95,
+          duration:1.0
+        }, 0);
+
+    /* 2. data converges */
+    tlm.to(frags, {
+      x:function(i){return targets[i].x;},
+      y:function(i){return targets[i].y;},
+      rotation:0,
+      scale:.80,
+      opacity:.20,
+      stagger:{amount:.22,from:'edges'},
+      duration:.95
+    }, 1.0)
+    .to(headline,{scale:.82,x:-5,y:-18,transformOrigin:'left top',duration:.75},1.05)
+    .to(supporting,{opacity:.18,y:-8,duration:.55},1.12)
+    .to(cta,{opacity:0,y:8,duration:.3},1.15);
+
+    /* 3. resolve into trusted data and outcomes */
+    tlm.to(frags,{opacity:.05,scale:.72,duration:.55},1.80)
+       .to(headline,{opacity:.18,y:-38,duration:.38},1.82)
+       .to(supporting,{opacity:0,y:-18,duration:.32},1.82)
+       .to(outcomes,{opacity:1,y:0,duration:.35},1.98)
+       .to(moNode,{opacity:1,y:0,duration:.25},2.02)
+       .to(rail,{scaleY:1,duration:.65,ease:'power1.inOut'},2.06);
+
+    moRows.forEach(function(row,i){
+      tlm.to(row,{opacity:1,x:0,duration:.22,ease:'power2.out'},2.15+i*.12);
     });
 
-    /* TRUSTED DATA appears, then the four outcomes reveal down the rail */
-    gsap.set(rail, { scaleY: 0 });
-    gsap.to(rail, { scaleY: 1, ease: 'none',
-      scrollTrigger: { trigger: mo, start: 'top 82%', end: 'bottom 70%', scrub: 0.5 } });
-    gsap.from('.mobile-outcomes .mo-node', { opacity: 0, scale: 0.9, duration: 0.6, ease: 'power2.out',
-      scrollTrigger: { trigger: mo, start: 'top 84%', once: true } });
-    gsap.utils.toArray('.mobile-outcomes .mo').forEach(function(row){
-      gsap.from(row, { opacity: 0, x: -10, duration: 0.55, ease: 'power2.out',
-        scrollTrigger: { trigger: row, start: 'top 90%', once: true } });
+    /* hold final composition */
+    tlm.to({}, {duration:.22}, 2.72);
+
+    return function(){};
+  });
+
+
+  /* Mobile nav: visible over hero, then retire it so it cannot overlap pinned sections. */
+  mm.add('(max-width: 767.98px) and (prefers-reduced-motion: no-preference)', function(){
+    ScrollTrigger.create({
+      trigger: '.exp',
+      start: 'top 92%',
+      endTrigger: '.ct',
+      end: 'bottom bottom',
+      onEnter: function(){ gsap.to('.nav',{opacity:0,duration:.22,overwrite:true}); },
+      onEnterBack: function(){ gsap.to('.nav',{opacity:0,duration:.22,overwrite:true}); },
+      onLeaveBack: function(){ gsap.to('.nav',{opacity:1,duration:.22,overwrite:true}); }
     });
   });
 
-  /* ============ MOBILE FABRIC · vertical architecture, progress rail ============ */
+  /* ============ MOBILE FABRIC · pinned vertical architecture journey ============ */
   mm.add('(max-width: 767.98px) and (prefers-reduced-motion: no-preference)', function(){
-    var fbm = document.querySelector('.fb-mobile');
-    if (!fbm) return;
-    var rail = fbm.querySelector('.fm-rail');
-    var rows = gsap.utils.toArray(fbm.querySelectorAll('.fm-row'));
+    var stage  = document.getElementById('fb-stage');
+    var fbm    = document.querySelector('.fb-mobile');
+    if (!stage || !fbm) return;
 
-    gsap.set(rail, { scaleY: 0 });
-    gsap.to(rail, { scaleY: 1, ease: 'none',
-      scrollTrigger: { trigger: fbm, start: 'top 78%', end: 'bottom 55%', scrub: 0.5 } });
-
-    rows.forEach(function(row){
-      gsap.from(row, { opacity: 0, y: 16, duration: 0.6, ease: 'power2.out',
-        scrollTrigger: { trigger: row, start: 'top 88%', once: true } });
-      ScrollTrigger.create({
-        trigger: row, start: 'top 72%', end: 'bottom 40%',
-        onEnter: function(){ row.classList.add('fm-active'); },
-        onLeaveBack: function(){ row.classList.remove('fm-active'); }
-      });
+    var rail     = fbm.querySelector('.fm-rail');
+    var packet   = fbm.querySelector('.fm-packet');
+    var rows     = gsap.utils.toArray(fbm.children).filter(function(el){
+      return el.classList && el.classList.contains('fm-row');
     });
-    gsap.from('.fb-mobile .fm-platform', { opacity: 0, y: 16, duration: 0.6, ease: 'power2.out',
-      scrollTrigger: { trigger: '.fb-mobile .fm-platform', start: 'top 90%', once: true } });
+    var platform = fbm.querySelector('.fm-platform');
+
+    function rowY(row){
+      var br = fbm.getBoundingClientRect();
+      var rr = row.getBoundingClientRect();
+      return rr.top - br.top + 3;
+    }
+
+    gsap.set(rows,{opacity:.22,y:16});
+    gsap.set(rail,{scaleY:0});
+    gsap.set(packet,{opacity:0,y:0});
+    gsap.set(platform,{opacity:0,y:10});
+
+    var ftm = gsap.timeline({
+      defaults:{ease:'power2.inOut'},
+      scrollTrigger:{
+        trigger:stage,
+        start:'top top',
+        end:'+=1550',
+        scrub:.8,
+        pin:true,
+        pinSpacing:true,
+        anticipatePin:1,
+        fastScrollEnd:true,
+        invalidateOnRefresh:true
+      }
+    });
+
+    /* stage 1: sources */
+    ftm.to(rows[0],{opacity:1,y:0,duration:.35},0)
+       .to(packet,{opacity:1,duration:.2},0.05)
+       .to(rail,{scaleY:.18,duration:.35,ease:'power1.inOut'},0.1)
+       .call(function(){ rows[0] && rows[0].classList.add('fm-active'); },null,0.15);
+
+    /* stage 2: ingest */
+    ftm.to(packet,{y:function(){return rowY(rows[1])-50;},duration:.45,ease:'none'},0.45)
+       .to(rail,{scaleY:.36,duration:.45,ease:'none'},0.45)
+       .to(rows[0],{opacity:.45,duration:.25},0.55)
+       .to(rows[1],{opacity:1,y:0,duration:.3},0.55)
+       .call(function(){ rows.forEach(r=>r.classList.remove('fm-active')); rows[1]&&rows[1].classList.add('fm-active'); },null,0.62);
+
+    /* stage 3: lakehouse */
+    ftm.to(packet,{y:function(){return rowY(rows[2])-50;},duration:.45,ease:'none'},0.95)
+       .to(rail,{scaleY:.54,duration:.45,ease:'none'},0.95)
+       .to(rows[1],{opacity:.45,duration:.25},1.05)
+       .to(rows[2],{opacity:1,y:0,duration:.3},1.05)
+       .call(function(){ rows.forEach(r=>r.classList.remove('fm-active')); rows[2]&&rows[2].classList.add('fm-active'); },null,1.12);
+
+    /* stage 4: medallion */
+    ftm.to(packet,{y:function(){return rowY(rows[3])-50;},duration:.52,ease:'none'},1.45)
+       .to(rail,{scaleY:.74,duration:.52,ease:'none'},1.45)
+       .to(rows[2],{opacity:.45,duration:.25},1.55)
+       .to(rows[3],{opacity:1,y:0,duration:.3},1.55)
+       .call(function(){ rows.forEach(r=>r.classList.remove('fm-active')); rows[3]&&rows[3].classList.add('fm-active'); },null,1.62);
+
+    /* stage 5: serve */
+    ftm.to(packet,{y:function(){return rowY(rows[4])-50;},duration:.52,ease:'none'},2.00)
+       .to(rail,{scaleY:.94,duration:.52,ease:'none'},2.00)
+       .to(rows[3],{opacity:.45,duration:.25},2.10)
+       .to(rows[4],{opacity:1,y:0,duration:.3},2.10)
+       .call(function(){ rows.forEach(r=>r.classList.remove('fm-active')); rows[4]&&rows[4].classList.add('fm-active'); },null,2.17)
+       .to(platform,{opacity:1,y:0,duration:.30},2.26)
+       .to(packet,{scale:1.35,duration:.20,ease:'back.out(2)'},2.30);
+
+    /* hold the completed architecture */
+    ftm.to({}, {duration:.22}, 2.60);
+
+    return function(){};
   });
 
   /* ============ REDUCED MOTION · polished static final state ============ */
